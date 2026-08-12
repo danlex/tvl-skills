@@ -1,0 +1,8 @@
+interface:
+  display_name: "Write LinkedIn Post"
+  short_description: "Write technical LinkedIn posts in Alex's voice"
+  default_prompt: "Use $write-linkedin-post to turn this source or idea into a validated LinkedIn post in my voice."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+policy:
+  allow_implicit_invocation: true
