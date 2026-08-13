@@ -1,8 +1,8 @@
-# Codex Handover: Publish `danlex/skills`
+# Codex Handover: Publish `danlex/tvl-skills`
 
 ## Goal
 
-Publish this prepared monorepo as the public GitHub repository `danlex/skills`. Its first package is `tvl-write-linkedin-post`, built around CROFTAFC and LinkedIn Writing Protocol v3.
+Publish this prepared monorepo as the public GitHub repository `danlex/tvl-skills`. Its first package is `tvl-write-linkedin-post`, built around CROFTAFC and LinkedIn Writing Protocol v3.
 
 ## Source
 
@@ -80,20 +80,20 @@ First confirm authentication and check whether the destination exists:
 
 ```bash
 gh auth status
-gh repo view danlex/skills --json nameWithOwner,visibility,url,defaultBranchRef
+gh repo view danlex/tvl-skills --json nameWithOwner,visibility,url,defaultBranchRef
 ```
 
-If `danlex/skills` does not exist, create it from this local repository:
+If `danlex/tvl-skills` does not exist, create it from this local repository:
 
 ```bash
-gh repo create danlex/skills --public --source=. --remote=origin --push
+gh repo create danlex/tvl-skills --public --source=. --remote=origin --push
 ```
 
 If it already exists and is the intended repository, configure the remote only when needed:
 
 ```bash
 git remote -v
-git remote add origin https://github.com/danlex/skills.git
+git remote add origin https://github.com/danlex/tvl-skills.git
 git push -u origin main
 ```
 
@@ -106,17 +106,17 @@ Confirm the branch, public visibility, files, and workflow:
 ```bash
 git status --short --branch
 git ls-remote --heads origin main
-gh repo view danlex/skills --json nameWithOwner,visibility,url,defaultBranchRef
-gh run list --repo danlex/skills --limit 5
+gh repo view danlex/tvl-skills --json nameWithOwner,visibility,url,defaultBranchRef
+gh run list --repo danlex/tvl-skills --limit 5
 ```
 
 If a validation run is in progress, wait for that run and confirm its conclusion:
 
 ```bash
-run_id="$(gh run list --repo danlex/skills --workflow validate.yml \
+run_id="$(gh run list --repo danlex/tvl-skills --workflow validate.yml \
   --limit 1 --json databaseId --jq '.[0].databaseId')"
 test -n "$run_id"
-gh run watch "$run_id" --repo danlex/skills --exit-status
+gh run watch "$run_id" --repo danlex/tvl-skills --exit-status
 ```
 
-Return the final URL `https://github.com/danlex/skills`, the published commit, validation results, and GitHub Actions status. Report any authentication, permission, remote mismatch, or workflow failure without bypassing safeguards.
+Return the final URL `https://github.com/danlex/tvl-skills`, the published commit, validation results, and GitHub Actions status. Report any authentication, permission, remote mismatch, or workflow failure without bypassing safeguards.

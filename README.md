@@ -18,7 +18,7 @@ Each skill combines concise operating instructions with the references, scripts,
 The simplest public install path is the Agent Skills CLI:
 
 ```bash
-npx skills add danlex/skills
+npx skills add danlex/tvl-skills
 ```
 
 ### Codex
@@ -28,13 +28,13 @@ Codex loads user skills from `~/.agents/skills` and repository skills from `.age
 Install all skills for the current user:
 
 ```bash
-tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/skills.git "$tmp" && mkdir -p ~/.agents/skills && cp -R "$tmp"/skills/* ~/.agents/skills/
+tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/tvl-skills.git "$tmp" && mkdir -p ~/.agents/skills && cp -R "$tmp"/skills/* ~/.agents/skills/
 ```
 
 Install one skill:
 
 ```bash
-tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/skills.git "$tmp" && mkdir -p ~/.agents/skills && cp -R "$tmp"/skills/tvl-design-diagram ~/.agents/skills/tvl-design-diagram
+tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/tvl-skills.git "$tmp" && mkdir -p ~/.agents/skills && cp -R "$tmp"/skills/tvl-design-diagram ~/.agents/skills/tvl-design-diagram
 ```
 
 ### Claude Code
@@ -44,13 +44,13 @@ Claude Code loads personal skills from `~/.claude/skills` and project skills fro
 Install all skills for the current user:
 
 ```bash
-tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/skills.git "$tmp" && mkdir -p ~/.claude/skills && cp -R "$tmp"/skills/* ~/.claude/skills/
+tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/tvl-skills.git "$tmp" && mkdir -p ~/.claude/skills && cp -R "$tmp"/skills/* ~/.claude/skills/
 ```
 
 Install all skills into the current project:
 
 ```bash
-tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/skills.git "$tmp" && mkdir -p .claude/skills && cp -R "$tmp"/skills/* .claude/skills/
+tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/tvl-skills.git "$tmp" && mkdir -p .claude/skills && cp -R "$tmp"/skills/* .claude/skills/
 ```
 
 ## Use the skills

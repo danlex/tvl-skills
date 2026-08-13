@@ -35,4 +35,4 @@ python3 /root/.codex/skills/oai/skill-creator/scripts/quick_validate.py \
 
 ## Publication rules
 
-Use `main` as the default branch. Publish to `https://github.com/danlex/skills`. Check whether the repository exists before creating it. Never overwrite a different existing repository. Commit only the intended repository files, push without force, then verify public access and the GitHub Actions result.
+Use `main` as the default branch. Publish to `https://github.com/danlex/tvl-skills`. Check whether the repository exists before creating it. Never overwrite a different existing repository. Commit only the intended repository files, push without force, then verify public access and the GitHub Actions result.
