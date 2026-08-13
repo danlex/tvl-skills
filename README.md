@@ -21,6 +21,38 @@ The simplest public install path is the Agent Skills CLI:
 npx skills add danlex/tvl-skills
 ```
 
+Command grammar:
+
+```bash
+npx skills add <owner>/<repo> --skill <skill-name> --agent <agent>
+```
+
+- `npx`: runs the npm package command without a separate global install.
+- `skills`: the Agent Skills CLI.
+- `add`: installs skills from a package or GitHub repository.
+- `danlex/tvl-skills`: the GitHub repository that contains the skills.
+- `--skill`: optional; install one skill instead of every skill in the repo.
+- `--agent`: optional; target a specific agent such as `claude-code` or `codex`.
+- `--global`: optional; install user-wide instead of project-local.
+
+Install one skill:
+
+```bash
+npx skills add danlex/tvl-skills --skill tvl-design-diagram
+```
+
+Install all skills globally for Claude Code:
+
+```bash
+npx skills add danlex/tvl-skills --agent claude-code --global --skill '*' -y
+```
+
+Verify a Claude Code install:
+
+```bash
+npx skills ls -g -a claude-code
+```
+
 ### Codex
 
 Codex loads user skills from `~/.agents/skills` and repository skills from `.agents/skills`.
