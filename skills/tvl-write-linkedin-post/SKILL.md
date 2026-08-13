@@ -1,5 +1,5 @@
 ---
-name: write-linkedin-post
+name: tvl-write-linkedin-post
 description: Draft, rewrite, shorten, expand, or validate LinkedIn posts in Alexandru Dan's technical writing voice using the CROFTAFC framework and LinkedIn Writing Protocol v3. Use for LinkedIn posts about AI, research papers, technical products, business consequences, engineering mechanisms, or current industry evidence, including posts based on links, PDFs, images, notes, or rough drafts.
 ---
 

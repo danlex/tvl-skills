@@ -2,7 +2,7 @@
 
 ## Goal
 
-Publish this prepared monorepo as the public GitHub repository `danlex/skills`. Its first package is `write-linkedin-post`, built around CROFTAFC and LinkedIn Writing Protocol v3.
+Publish this prepared monorepo as the public GitHub repository `danlex/skills`. Its first package is `tvl-write-linkedin-post`, built around CROFTAFC and LinkedIn Writing Protocol v3.
 
 ## Source
 
@@ -16,13 +16,13 @@ Preserve the current structure. Do not rebuild the repository unless validation 
 
 ## Required contents
 
-- `skills/write-linkedin-post/SKILL.md`, including CROFTAFC and the complete embedded protocol
-- `skills/write-linkedin-post/references/protocol-v3.md`
-- `skills/write-linkedin-post/references/evaluation-cases.md`
-- `skills/write-linkedin-post/scripts/validate_post.py`
-- `skills/write-linkedin-post/scripts/test_validator.py`
-- `skills/write-linkedin-post/agents/openai.yaml`
-- `skills/write-linkedin-post/assets/icon.svg`
+- `skills/tvl-write-linkedin-post/SKILL.md`, including CROFTAFC and the complete embedded protocol
+- `skills/tvl-write-linkedin-post/references/protocol-v3.md`
+- `skills/tvl-write-linkedin-post/references/evaluation-cases.md`
+- `skills/tvl-write-linkedin-post/scripts/validate_post.py`
+- `skills/tvl-write-linkedin-post/scripts/test_validator.py`
+- `skills/tvl-write-linkedin-post/agents/openai.yaml`
+- `skills/tvl-write-linkedin-post/assets/icon.svg`
 - `README.md`
 - `CONTRIBUTING.md`
 - `LICENSE`
@@ -48,9 +48,9 @@ Run from the repository root:
 
 ```bash
 git status --short --branch
-python3 skills/write-linkedin-post/scripts/test_validator.py
+python3 skills/tvl-write-linkedin-post/scripts/test_validator.py
 python3 /root/.codex/skills/oai/skill-creator/scripts/quick_validate.py \
-  skills/write-linkedin-post
+  skills/tvl-write-linkedin-post
 ```
 
 All checks must pass. Review the diff and preserve unrelated changes.
@@ -67,7 +67,7 @@ Stage only the intended files, then create one focused commit:
 
 ```bash
 git add AGENTS.md CODEX_HANDOFF.md README.md CONTRIBUTING.md \
-  .github/workflows/validate.yml skills/write-linkedin-post
+  .github/workflows/validate.yml skills/tvl-write-linkedin-post
 git status --short
 git commit -m "Publish CROFTAFC LinkedIn writing skill"
 ```

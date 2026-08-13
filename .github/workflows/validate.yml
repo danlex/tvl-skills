@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  write-linkedin-post:
+  tvl-write-linkedin-post:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,5 +16,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Run validator tests
-        working-directory: skills/write-linkedin-post/scripts
+        working-directory: skills/tvl-write-linkedin-post/scripts
         run: python -m unittest test_validator.py
+      - name: Run diagram template tests
+        run: python skills/tvl-design-diagram/scripts/test_templates.py

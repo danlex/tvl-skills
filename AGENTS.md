@@ -19,15 +19,18 @@ Maintain a public monorepo of reusable AI skills. Preserve the existing `skills/
 Run from the repository root:
 
 ```bash
-python3 skills/write-linkedin-post/scripts/test_validator.py
-python3 skills/write-linkedin-post/scripts/validate_post.py --help
+python3 skills/tvl-write-linkedin-post/scripts/test_validator.py
+python3 skills/tvl-write-linkedin-post/scripts/validate_post.py --help
+python3 skills/tvl-design-diagram/scripts/test_templates.py
 ```
 
 When the OpenAI skill validation utility is available, also run:
 
 ```bash
 python3 /root/.codex/skills/oai/skill-creator/scripts/quick_validate.py \
-  skills/write-linkedin-post
+  skills/tvl-write-linkedin-post
+python3 /root/.codex/skills/oai/skill-creator/scripts/quick_validate.py \
+  skills/tvl-design-diagram
 ```
 
 ## Publication rules

@@ -1,0 +1,4 @@
+interface:
+  display_name: "TVL Design Diagram"
+  short_description: "Turn rough ideas into clear Mermaid diagrams"
+  default_prompt: "Use $tvl-design-diagram to turn this system description into a clean Mermaid diagram."

@@ -1,6 +1,6 @@
-# Alexandru Dan's AI Skills
+# TVL AI Skills
 
-Open source skills for ChatGPT, Codex, Claude, and other compatible AI agents.
+Open source Agent Skills for ChatGPT, Codex, Claude Code, and other compatible AI agents.
 
 Each skill combines concise operating instructions with the references, scripts, and tests needed for repeatable results. The repository is structured as a monorepo so new skills can be added without changing the installation model.
 
@@ -8,48 +8,89 @@ Each skill combines concise operating instructions with the references, scripts,
 
 | Skill | Purpose |
 | --- | --- |
-| [`write-linkedin-post`](skills/write-linkedin-post/) | Draft, rewrite, and validate technical LinkedIn posts using CROFTAFC and LinkedIn Writing Protocol v3. |
+| [`tvl-write-linkedin-post`](skills/tvl-write-linkedin-post/) | Draft, rewrite, and validate technical LinkedIn posts using CROFTAFC and LinkedIn Writing Protocol v3. |
+| [`tvl-design-diagram`](skills/tvl-design-diagram/) | Turn rough ideas, systems, workflows, and decision gates into clear Mermaid diagrams with an Ethical AI check. |
 
-## Install a skill
+## Install
 
-### ChatGPT and Codex
+### Agent Skills CLI
 
-Download the selected folder and add it from the Skills page. The folder must preserve `SKILL.md` and its supporting directories.
-
-For a local Codex installation, copy the skill into your personal skills directory:
+The simplest public install path is the Agent Skills CLI:
 
 ```bash
-git clone https://github.com/danlex/skills.git
-mkdir -p ~/.codex/skills
-cp -R skills/skills/write-linkedin-post ~/.codex/skills/write-linkedin-post
+npx skills add danlex/skills
+```
+
+### Codex
+
+Codex loads user skills from `~/.agents/skills` and repository skills from `.agents/skills`.
+
+Install all skills for the current user:
+
+```bash
+tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/skills.git "$tmp" && mkdir -p ~/.agents/skills && cp -R "$tmp"/skills/* ~/.agents/skills/
+```
+
+Install one skill:
+
+```bash
+tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/skills.git "$tmp" && mkdir -p ~/.agents/skills && cp -R "$tmp"/skills/tvl-design-diagram ~/.agents/skills/tvl-design-diagram
 ```
 
 ### Claude Code
 
-Copy the selected folder into your project's `.claude/skills/` directory:
+Claude Code loads personal skills from `~/.claude/skills` and project skills from `.claude/skills`.
+
+Install all skills for the current user:
 
 ```bash
-mkdir -p .claude/skills
-cp -R skills/skills/write-linkedin-post .claude/skills/write-linkedin-post
+tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/skills.git "$tmp" && mkdir -p ~/.claude/skills && cp -R "$tmp"/skills/* ~/.claude/skills/
 ```
 
-## Use the first skill
+Install all skills into the current project:
 
-Invoke it explicitly when you want consistent behavior:
+```bash
+tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/skills.git "$tmp" && mkdir -p .claude/skills && cp -R "$tmp"/skills/* .claude/skills/
+```
+
+## Use the skills
+
+Invoke a skill explicitly when you want consistent behavior.
+
+### LinkedIn writing
 
 ```text
-Use $write-linkedin-post to turn this paper into a 2,700 to 2,900 character LinkedIn post.
+Use $tvl-write-linkedin-post to turn this paper into a 2,700 to 2,900 character LinkedIn post.
 ```
 
 The skill extracts evidence through CROFTAFC, drafts the post, runs deterministic checks, performs semantic review, and rewrites any failed rule before returning the result.
 
 The complete LinkedIn Writing Protocol v3 is embedded directly in `SKILL.md` so the main instruction file is self contained. A reference copy remains in `references/protocol-v3.md` for maintenance and review.
 
+### Diagram design
+
+```text
+Use $tvl-design-diagram to turn this product flow into a Mermaid diagram.
+```
+
+The skill supports three diagram templates:
+
+- `system-map`: components, actors, data stores, integrations, and outputs.
+- `workflow`: ordered steps, handoffs, review loops, and final outputs.
+- `decision-flow`: validation gates, branch conditions, and `PASS` / `FLAG` / `BLOCK` outcomes.
+
+Before returning a diagram, the skill runs a lightweight Ethical AI check for hallucination, confabulation, sycophancy, confirmation bias, source fabrication, prompt injection, selective evidence, anchoring, and overconfidence.
+
 ## Repository structure
 
 ```text
 skills/
-  write-linkedin-post/
+  tvl-design-diagram/
+    SKILL.md
+    agents/openai.yaml
+    references/
+    scripts/
+  tvl-write-linkedin-post/
     SKILL.md
     agents/openai.yaml
     assets/icon.svg
@@ -59,17 +100,24 @@ skills/
 
 ## Validate
 
-Run the skill's automated tests:
+Run the automated tests:
 
 ```bash
-cd skills/write-linkedin-post/scripts
-python3 -m unittest test_validator.py
+python3 skills/tvl-write-linkedin-post/scripts/test_validator.py
+python3 skills/tvl-design-diagram/scripts/test_templates.py
 ```
 
-Validate a draft directly:
+Validate a LinkedIn draft directly:
 
 ```bash
-python3 skills/write-linkedin-post/scripts/validate_post.py draft.txt
+python3 skills/tvl-write-linkedin-post/scripts/validate_post.py draft.txt
+```
+
+Validate skill structure with the OpenAI skill creator utility when available:
+
+```bash
+python3 /path/to/quick_validate.py skills/tvl-write-linkedin-post
+python3 /path/to/quick_validate.py skills/tvl-design-diagram
 ```
 
 ## Contributing
