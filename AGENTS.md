@@ -22,6 +22,7 @@ Run from the repository root:
 python3 skills/tvl-write-linkedin-post/scripts/test_validator.py
 python3 skills/tvl-write-linkedin-post/scripts/validate_post.py --help
 python3 skills/tvl-design-diagram/scripts/test_templates.py
+python3 skills/tvl-ethical-ai-detector/scripts/test_detector.py
 ```
 
 When the OpenAI skill validation utility is available, also run:
@@ -31,6 +32,8 @@ python3 /root/.codex/skills/oai/skill-creator/scripts/quick_validate.py \
   skills/tvl-write-linkedin-post
 python3 /root/.codex/skills/oai/skill-creator/scripts/quick_validate.py \
   skills/tvl-design-diagram
+python3 /root/.codex/skills/oai/skill-creator/scripts/quick_validate.py \
+  skills/tvl-ethical-ai-detector
 ```
 
 ## Publication rules
