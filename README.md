@@ -12,6 +12,7 @@ Each skill combines concise operating instructions with the references, scripts,
 | [`tvl-design-diagram`](skills/tvl-design-diagram/) | Turn rough ideas, systems, workflows, and decision gates into clear Mermaid diagrams with an Ethical AI check. |
 | [`tvl-ethical-ai-audit`](skills/tvl-ethical-ai-audit/) | Audit drafts, claims, citations, plans, and agent behavior for EthicalAI failure modes. |
 | [`tvl-confirmation-bias-audit`](skills/tvl-confirmation-bias-audit/) | Audit conclusions for one-sided evidence, missing alternatives, and failure to falsify. |
+| [`tvl-seo-geo-audit`](skills/tvl-seo-geo-audit/) | Audit pages for technical SEO, structured data, multilingual hygiene, and AI answer visibility. |
 
 ## Install
 
@@ -53,6 +54,12 @@ Install the confirmation bias auditor:
 
 ```bash
 npx skills add danlex/tvl-skills --skill tvl-confirmation-bias-audit
+```
+
+Install the SEO/GEO auditor:
+
+```bash
+npx skills add danlex/tvl-skills --skill tvl-seo-geo-audit
 ```
 
 Install all skills globally for Claude Code:
@@ -145,6 +152,14 @@ The skill focuses on confirmation bias: whether the answer stated and tested the
 
 Anonymized example patterns include: mistaking co-primed reviewer agreement for independent confirmation, treating generic website navigation as proof that a specific archive exists, declaring a best fix before measurement, declaring business payback from stacked assumptions, and generalizing a metric from one small sample while ignoring variance.
 
+### SEO and GEO audit
+
+```text
+Use $tvl-seo-geo-audit to audit this page for technical SEO, structured data, multilingual hygiene, and AI answer visibility.
+```
+
+The skill audits indexability, canonical and hreflang, sitemap freshness, robots.txt, titles, descriptions, headings, structured data, Open Graph, content quality, entity clarity, source trust, and AI answer visibility. It treats GEO as an extension of good SEO: crawlable, clear, factual, source-backed content that can be understood and cited by search and AI answer systems. It returns `PASS`, `REVISE`, or `BLOCK` with prioritized fixes.
+
 ## Repository structure
 
 ```text
@@ -160,6 +175,11 @@ skills/
     references/
     scripts/
   tvl-confirmation-bias-audit/
+    SKILL.md
+    agents/openai.yaml
+    references/
+    scripts/
+  tvl-seo-geo-audit/
     SKILL.md
     agents/openai.yaml
     references/
@@ -181,6 +201,7 @@ python3 skills/tvl-write-linkedin-post/scripts/test_validator.py
 python3 skills/tvl-design-diagram/scripts/test_templates.py
 python3 skills/tvl-ethical-ai-audit/scripts/test_audit.py
 python3 skills/tvl-confirmation-bias-audit/scripts/test_confirmation_bias_audit.py
+python3 skills/tvl-seo-geo-audit/scripts/test_seo_geo_audit.py
 ```
 
 Validate a LinkedIn draft directly:
@@ -196,6 +217,7 @@ python3 /path/to/quick_validate.py skills/tvl-write-linkedin-post
 python3 /path/to/quick_validate.py skills/tvl-design-diagram
 python3 /path/to/quick_validate.py skills/tvl-ethical-ai-audit
 python3 /path/to/quick_validate.py skills/tvl-confirmation-bias-audit
+python3 /path/to/quick_validate.py skills/tvl-seo-geo-audit
 ```
 
 ## Contributing
