@@ -10,7 +10,7 @@ Each skill combines concise operating instructions with the references, scripts,
 | --- | --- |
 | [`tvl-write-linkedin-post`](skills/tvl-write-linkedin-post/) | Draft, rewrite, and validate technical LinkedIn posts using CROFTAFC and LinkedIn Writing Protocol v3. |
 | [`tvl-design-diagram`](skills/tvl-design-diagram/) | Turn rough ideas, systems, workflows, and decision gates into clear Mermaid diagrams with an Ethical AI check. |
-| [`tvl-ethical-ai-judge`](skills/tvl-ethical-ai-judge/) | Audit drafts, claims, citations, plans, and agent behavior for EthicalAI failure modes. |
+| [`tvl-ethical-ai-audit`](skills/tvl-ethical-ai-audit/) | Audit drafts, claims, citations, plans, and agent behavior for EthicalAI failure modes. |
 
 ## Install
 
@@ -45,7 +45,7 @@ npx skills add danlex/tvl-skills --skill tvl-design-diagram
 Install the Ethical AI judge:
 
 ```bash
-npx skills add danlex/tvl-skills --skill tvl-ethical-ai-judge
+npx skills add danlex/tvl-skills --skill tvl-ethical-ai-audit
 ```
 
 Install all skills globally for Claude Code:
@@ -123,7 +123,7 @@ Before returning a diagram, the skill runs a lightweight Ethical AI check for ha
 ### Ethical AI detection
 
 ```text
-Use $tvl-ethical-ai-judge to audit this draft before I publish it.
+Use $tvl-ethical-ai-audit to audit this draft before I publish it.
 ```
 
 The skill checks drafts, plans, claims, citations, summaries, and agent behavior against the EthicalAI failure modes from `ethicalai.alexandrudan.com`: hallucination, confabulation, source fabrication, narrativity drift, sycophancy, capitulation, confirmation bias, selective evidence, anchoring, automation bias, overconfidence, prompt injection, scope creep, and specification gaming. It returns a terse evidence-first report with `PASS`, `REVISE`, or `BLOCK`.
@@ -137,7 +137,7 @@ skills/
     agents/openai.yaml
     references/
     scripts/
-  tvl-ethical-ai-judge/
+  tvl-ethical-ai-audit/
     SKILL.md
     agents/openai.yaml
     references/
@@ -157,7 +157,7 @@ Run the automated tests:
 ```bash
 python3 skills/tvl-write-linkedin-post/scripts/test_validator.py
 python3 skills/tvl-design-diagram/scripts/test_templates.py
-python3 skills/tvl-ethical-ai-judge/scripts/test_judge.py
+python3 skills/tvl-ethical-ai-audit/scripts/test_audit.py
 ```
 
 Validate a LinkedIn draft directly:
@@ -171,7 +171,7 @@ Validate skill structure with the OpenAI skill creator utility when available:
 ```bash
 python3 /path/to/quick_validate.py skills/tvl-write-linkedin-post
 python3 /path/to/quick_validate.py skills/tvl-design-diagram
-python3 /path/to/quick_validate.py skills/tvl-ethical-ai-judge
+python3 /path/to/quick_validate.py skills/tvl-ethical-ai-audit
 ```
 
 ## Contributing

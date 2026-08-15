@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Structural checks for tvl-ethical-ai-judge."""
+"""Structural checks for tvl-ethical-ai-audit."""
 
 from __future__ import annotations
 
@@ -31,7 +31,7 @@ REQUIRED_MODES = (
 
 def test_skill_frontmatter_and_reference() -> None:
     text = SKILL.read_text(encoding="utf-8")
-    assert text.startswith("---\nname: tvl-ethical-ai-judge\n")
+    assert text.startswith("---\nname: tvl-ethical-ai-audit\n")
     assert "references/ethicalai-rubric.md" in text
     assert "PASS | REVISE | BLOCK" in text
 
@@ -56,8 +56,8 @@ def test_rubric_defines_evidence_labels() -> None:
 
 def test_openai_metadata_matches_skill() -> None:
     text = OPENAI.read_text(encoding="utf-8")
-    assert "TVL Ethical AI Judge" in text
-    assert "$tvl-ethical-ai-judge" in text
+    assert "TVL Ethical AI Audit" in text
+    assert "$tvl-ethical-ai-audit" in text
 
 
 if __name__ == "__main__":
@@ -70,4 +70,4 @@ if __name__ == "__main__":
     ]
     for test in tests:
         test()
-    print(f"{len(tests)} ethical AI judge checks passed")
+    print(f"{len(tests)} ethical AI audit checks passed")

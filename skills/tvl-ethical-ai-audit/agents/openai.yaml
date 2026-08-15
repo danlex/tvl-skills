@@ -1,0 +1,4 @@
+interface:
+  display_name: "TVL Ethical AI Audit"
+  short_description: "Audit drafts for AI integrity failure modes"
+  default_prompt: "Use $tvl-ethical-ai-audit to audit this draft for hallucination, source fabrication, sycophancy, confirmation bias, and related Ethical AI failures."

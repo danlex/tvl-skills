@@ -21,4 +21,4 @@ jobs:
       - name: Run diagram template tests
         run: python skills/tvl-design-diagram/scripts/test_templates.py
       - name: Run Ethical AI detector tests
-        run: python skills/tvl-ethical-ai-judge/scripts/test_judge.py
+        run: python skills/tvl-ethical-ai-audit/scripts/test_audit.py

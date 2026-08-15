@@ -1,13 +1,13 @@
 ---
-name: tvl-ethical-ai-judge
+name: tvl-ethical-ai-audit
 description: Audit AI-generated drafts, answers, plans, claims, citations, summaries, code explanations, or agent behavior for EthicalAI failure modes including hallucination, confabulation, source fabrication, sycophancy, capitulation, confirmation bias, selective evidence, anchoring, automation bias, overconfidence, prompt injection, scope creep, and specification gaming. Use when the user asks to check, verify, validate, audit, sanity-check, detect bias, detect hallucinations, or run an Ethical AI review.
 ---
 
-# Ethical AI Judge
+# Ethical AI Audit
 
 ## Overview
 
-Audit a draft or agent response before it is trusted. The judge is advisory: it returns evidence, failure-mode findings, and a verdict, but it does not rewrite the draft unless the user asks.
+Audit a draft or agent response before it is trusted. The audit is advisory: it returns evidence, failure-mode findings, and a verdict, but it does not rewrite the draft unless the user asks.
 
 The rubric is based on the EthicalAI failure-mode catalogue at `https://ethicalai.alexandrudan.com` and the EthicalHive audit pattern: evidence first, prose second, with `PASS`, `FLAG`, or `BLOCK` per check.
 
@@ -38,7 +38,7 @@ The rubric is based on the EthicalAI failure-mode catalogue at `https://ethicala
 Use this format by default:
 
 ```text
-ETHICAL AI JUDGE
+ETHICAL AI AUDIT
 
 VERDICT: PASS | REVISE | BLOCK
 
