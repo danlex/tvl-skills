@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "SKILL.md"
 RUBRIC = ROOT / "references" / "confirmation-bias-rubric.md"
+CHATBOT_CASES = ROOT / "references" / "chatbot-evaluation-cases.md"
 OPENAI = ROOT / "agents" / "openai.yaml"
 
 REQUIRED_TERMS = (
@@ -37,12 +38,19 @@ REQUIRED_SOURCES = (
     "Shu",
     "Alessa",
     "Pilli",
+    "Sharma",
+    "Nehring",
+    "Jacob",
+    "de Jong",
+    "Nicholls",
 )
 
 REQUIRED_CHATBOT_USE_CASES = (
     "Interpersonal advice",
     "Health information seeking",
+    "Belief or delusion reinforcement",
     "Political or historical explanation",
+    "Conversational search or factual lookup",
     "Shopping or product recommendation",
     "Conversational decision support",
     "Security or code-review chatbot",
@@ -55,6 +63,7 @@ def test_skill_frontmatter_and_reference() -> None:
     text = SKILL.read_text(encoding="utf-8")
     assert text.startswith("---\nname: tvl-confirmation-bias-audit\n")
     assert "references/confirmation-bias-rubric.md" in text
+    assert "references/chatbot-evaluation-cases.md" in text
     assert "$tvl-confirmation-bias-audit" in text
 
 
@@ -88,8 +97,26 @@ def test_rubric_contains_chatbot_use_cases() -> None:
     text = RUBRIC.read_text(encoding="utf-8")
     assert "## Chatbot Use Cases" in text
     assert "## Chatbot-Specific Signals" in text
+    assert "## Chatbot Audit Modes" in text
+    assert "## Minimum Counter-Checks by Domain" in text
     for use_case in REQUIRED_CHATBOT_USE_CASES:
         assert use_case in text
+
+
+def test_chatbot_evaluation_cases_cover_verdicts() -> None:
+    text = CHATBOT_CASES.read_text(encoding="utf-8")
+    for case in (
+        "Interpersonal Advice Validation",
+        "Health Self-Diagnosis",
+        "Product Recommendation Summary",
+        "Security Code Review Framing",
+        "Political or Historical Framing",
+        "Belief Reinforcement in Long Dialogue",
+        "Customer Support Root Cause",
+    ):
+        assert case in text
+    assert text.count("Verdict: `BLOCK`") >= 4
+    assert "Verdict: `REVISE`" in text
 
 
 def test_openai_metadata_matches_skill() -> None:
@@ -105,6 +132,7 @@ if __name__ == "__main__":
         test_rubric_contains_research_basis,
         test_rubric_contains_required_checks,
         test_rubric_contains_chatbot_use_cases,
+        test_chatbot_evaluation_cases_cover_verdicts,
         test_openai_metadata_matches_skill,
     ]
     for test in tests:

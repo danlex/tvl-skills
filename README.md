@@ -141,7 +141,7 @@ The skill checks drafts, plans, claims, citations, summaries, and agent behavior
 Use $tvl-confirmation-bias-audit to audit this root-cause conclusion for one-sided evidence.
 ```
 
-The skill focuses on confirmation bias: whether the answer stated and tested the strongest alternative explanation, looked for disconfirming evidence, interpreted ambiguous evidence fairly, and calibrated certainty. It returns a falsification-first audit with `PASS`, `REVISE`, or `BLOCK`.
+The skill focuses on confirmation bias: whether the answer stated and tested the strongest alternative explanation, looked for disconfirming evidence, interpreted ambiguous evidence fairly, and calibrated certainty. It includes chatbot-specific audit modes and evaluation cases for interpersonal advice, health, shopping, code review, political framing, belief reinforcement, and incident triage. It returns a falsification-first audit with `PASS`, `REVISE`, or `BLOCK`.
 
 ## Repository structure
 
