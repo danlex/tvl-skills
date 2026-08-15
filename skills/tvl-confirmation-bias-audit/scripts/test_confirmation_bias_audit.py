@@ -31,6 +31,23 @@ REQUIRED_SOURCES = (
     "Wan",
     "Jhaveri",
     "Mitropoulos",
+    "Du",
+    "Lopez-Lopez",
+    "Cheng",
+    "Shu",
+    "Alessa",
+    "Pilli",
+)
+
+REQUIRED_CHATBOT_USE_CASES = (
+    "Interpersonal advice",
+    "Health information seeking",
+    "Political or historical explanation",
+    "Shopping or product recommendation",
+    "Conversational decision support",
+    "Security or code-review chatbot",
+    "Customer support or incident triage",
+    "Legal, HR, or finance advice",
 )
 
 
@@ -67,6 +84,14 @@ def test_rubric_contains_required_checks() -> None:
         assert check in text
 
 
+def test_rubric_contains_chatbot_use_cases() -> None:
+    text = RUBRIC.read_text(encoding="utf-8")
+    assert "## Chatbot Use Cases" in text
+    assert "## Chatbot-Specific Signals" in text
+    for use_case in REQUIRED_CHATBOT_USE_CASES:
+        assert use_case in text
+
+
 def test_openai_metadata_matches_skill() -> None:
     text = OPENAI.read_text(encoding="utf-8")
     assert "TVL Confirmation Bias Audit" in text
@@ -79,6 +104,7 @@ if __name__ == "__main__":
         test_skill_contains_audit_contract,
         test_rubric_contains_research_basis,
         test_rubric_contains_required_checks,
+        test_rubric_contains_chatbot_use_cases,
         test_openai_metadata_matches_skill,
     ]
     for test in tests:

@@ -19,6 +19,7 @@ This skill is narrower than `tvl-ethical-ai-audit`: it focuses on confirmation b
    - A project-state claim such as "the cache is the bottleneck" or "this function is unused".
    - A code review conclusion such as "this change is safe" or "no vulnerability exists".
    - A research or business conclusion such as "the evidence supports this strategy".
+   - A chatbot conversation where the assistant may have validated the user's framing.
    - A root-cause, incident, diagnosis, decision, or recommendation.
 4. Extract the hypothesis and prior framing:
    - What did the draft set out to prove?
@@ -92,5 +93,6 @@ Verdict rules:
 - "Audit this root-cause analysis for confirmation bias."
 - "Did the agent only look for evidence that supported its hypothesis?"
 - "Review this code review for one-sided reasoning."
+- "Audit this chatbot advice for confirmation bias."
 - "Before we decide, test the opposite case."
 - "Use $tvl-confirmation-bias-audit on this answer."
