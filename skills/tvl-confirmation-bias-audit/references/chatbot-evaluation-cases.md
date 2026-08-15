@@ -147,3 +147,14 @@ Expected audit:
 - Verdict: `BLOCK`
 - Reason: the user prompt is leading, and available evidence contains a stronger internal-change alternative.
 - Required fix: test both vendor and internal deployment timelines before assigning root cause.
+
+## Anonymized Operational Patterns
+
+Use these patterns when demonstrating the skill with realistic but non-identifying examples.
+
+| Pattern | Expected finding | Audit direction |
+| --- | --- | --- |
+| A chatbot concludes that a specific archive exists because a website has a generic archive navigation section. | `BLOCK` | Generic evidence does not confirm the specific object. Require item-specific source verification. |
+| A business plan states "sub-year payback" by combining a provisional savings estimate with an unsourced cost assumption. | `REVISE` | The conclusion stacks assumptions and does not test a downside cost scenario. Require conditional language and sensitivity checks. |
+| Five reviewers agree a draft is ready, but all five received the same defect-hunting brief and none ran an adversarial or runtime test. | `BLOCK` | Co-primed agreement is not independent confirmation. Require a disconfirming reviewer, runtime test, or explicit limitation. |
+| An audit reports a single percentage from one small file sample while ignoring visible variance across files. | `REVISE` | The summary overgeneralizes from a narrow sample. Require sample boundaries, variance, and a larger or stratified check. |
