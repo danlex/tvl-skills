@@ -1,0 +1,4 @@
+interface:
+  display_name: "TVL Confirmation Bias Audit"
+  short_description: "Audit conclusions for one-sided evidence"
+  default_prompt: "Use $tvl-confirmation-bias-audit to audit this conclusion for one-sided evidence, missing alternatives, and failure to falsify."

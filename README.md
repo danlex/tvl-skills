@@ -11,6 +11,7 @@ Each skill combines concise operating instructions with the references, scripts,
 | [`tvl-write-linkedin-post`](skills/tvl-write-linkedin-post/) | Draft, rewrite, and validate technical LinkedIn posts using CROFTAFC and LinkedIn Writing Protocol v3. |
 | [`tvl-design-diagram`](skills/tvl-design-diagram/) | Turn rough ideas, systems, workflows, and decision gates into clear Mermaid diagrams with an Ethical AI check. |
 | [`tvl-ethical-ai-audit`](skills/tvl-ethical-ai-audit/) | Audit drafts, claims, citations, plans, and agent behavior for EthicalAI failure modes. |
+| [`tvl-confirmation-bias-audit`](skills/tvl-confirmation-bias-audit/) | Audit conclusions for one-sided evidence, missing alternatives, and failure to falsify. |
 
 ## Install
 
@@ -46,6 +47,12 @@ Install the Ethical AI judge:
 
 ```bash
 npx skills add danlex/tvl-skills --skill tvl-ethical-ai-audit
+```
+
+Install the confirmation bias auditor:
+
+```bash
+npx skills add danlex/tvl-skills --skill tvl-confirmation-bias-audit
 ```
 
 Install all skills globally for Claude Code:
@@ -128,6 +135,14 @@ Use $tvl-ethical-ai-audit to audit this draft before I publish it.
 
 The skill checks drafts, plans, claims, citations, summaries, and agent behavior against the EthicalAI failure modes from `ethicalai.alexandrudan.com`: hallucination, confabulation, source fabrication, narrativity drift, sycophancy, capitulation, confirmation bias, selective evidence, anchoring, automation bias, overconfidence, prompt injection, scope creep, and specification gaming. It returns a terse evidence-first report with `PASS`, `REVISE`, or `BLOCK`.
 
+### Confirmation bias audit
+
+```text
+Use $tvl-confirmation-bias-audit to audit this root-cause conclusion for one-sided evidence.
+```
+
+The skill focuses on confirmation bias: whether the answer stated and tested the strongest alternative explanation, looked for disconfirming evidence, interpreted ambiguous evidence fairly, and calibrated certainty. It returns a falsification-first audit with `PASS`, `REVISE`, or `BLOCK`.
+
 ## Repository structure
 
 ```text
@@ -138,6 +153,11 @@ skills/
     references/
     scripts/
   tvl-ethical-ai-audit/
+    SKILL.md
+    agents/openai.yaml
+    references/
+    scripts/
+  tvl-confirmation-bias-audit/
     SKILL.md
     agents/openai.yaml
     references/
@@ -158,6 +178,7 @@ Run the automated tests:
 python3 skills/tvl-write-linkedin-post/scripts/test_validator.py
 python3 skills/tvl-design-diagram/scripts/test_templates.py
 python3 skills/tvl-ethical-ai-audit/scripts/test_audit.py
+python3 skills/tvl-confirmation-bias-audit/scripts/test_confirmation_bias_audit.py
 ```
 
 Validate a LinkedIn draft directly:
@@ -172,6 +193,7 @@ Validate skill structure with the OpenAI skill creator utility when available:
 python3 /path/to/quick_validate.py skills/tvl-write-linkedin-post
 python3 /path/to/quick_validate.py skills/tvl-design-diagram
 python3 /path/to/quick_validate.py skills/tvl-ethical-ai-audit
+python3 /path/to/quick_validate.py skills/tvl-confirmation-bias-audit
 ```
 
 ## Contributing
