@@ -154,7 +154,8 @@ Use these patterns when demonstrating the skill with realistic but non-identifyi
 
 | Pattern | Expected finding | Audit direction |
 | --- | --- | --- |
-| A chatbot concludes that a specific archive exists because a website has a generic archive navigation section. | `BLOCK` | Generic evidence does not confirm the specific object. Require item-specific source verification. |
-| A business plan states "sub-year payback" by combining a provisional savings estimate with an unsourced cost assumption. | `REVISE` | The conclusion stacks assumptions and does not test a downside cost scenario. Require conditional language and sensitivity checks. |
 | Five reviewers agree a draft is ready, but all five received the same defect-hunting brief and none ran an adversarial or runtime test. | `BLOCK` | Co-primed agreement is not independent confirmation. Require a disconfirming reviewer, runtime test, or explicit limitation. |
+| A chatbot concludes that a specific archive exists because a website has a generic archive navigation section. | `BLOCK` | Generic evidence does not confirm the specific object. Require item-specific source verification. |
+| An agent calls one fix the highest-leverage option before measuring it against alternatives. | `BLOCK` | The answer turns an untested hypothesis into a conclusion. Require a comparison, falsification check, or explicit hypothesis label. |
+| A business plan states "sub-year payback" by combining a provisional savings estimate with an unsourced cost assumption. | `REVISE` | The conclusion stacks assumptions and does not test a downside cost scenario. Require conditional language and sensitivity checks. |
 | An audit reports a single percentage from one small file sample while ignoring visible variance across files. | `REVISE` | The summary overgeneralizes from a narrow sample. Require sample boundaries, variance, and a larger or stratified check. |

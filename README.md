@@ -143,7 +143,7 @@ Use $tvl-confirmation-bias-audit to audit this root-cause conclusion for one-sid
 
 The skill focuses on confirmation bias: whether the answer stated and tested the strongest alternative explanation, looked for disconfirming evidence, interpreted ambiguous evidence fairly, and calibrated certainty. It includes chatbot-specific audit modes and evaluation cases for interpersonal advice, health, shopping, code review, political framing, belief reinforcement, and incident triage. It returns a falsification-first audit with `PASS`, `REVISE`, or `BLOCK`.
 
-Anonymized example patterns include: treating generic website navigation as proof that a specific archive exists, declaring business payback from stacked assumptions, mistaking co-primed reviewer agreement for independent confirmation, and generalizing a metric from one small sample while ignoring variance.
+Anonymized example patterns include: mistaking co-primed reviewer agreement for independent confirmation, treating generic website navigation as proof that a specific archive exists, declaring a best fix before measurement, declaring business payback from stacked assumptions, and generalizing a metric from one small sample while ignoring variance.
 
 ## Repository structure
 
