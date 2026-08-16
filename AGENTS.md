@@ -25,6 +25,7 @@ python3 skills/tvl-design-diagram/scripts/test_templates.py
 python3 skills/tvl-ethical-ai-audit/scripts/test_audit.py
 python3 skills/tvl-confirmation-bias-audit/scripts/test_confirmation_bias_audit.py
 python3 skills/tvl-seo-geo-audit/scripts/test_seo_geo_audit.py
+python3 skills/tvl-seo-geo-audit/scripts/check_reference_freshness.py
 python3 skills/tvl-build-free-website/scripts/test_free_website_skill.py
 ```
 

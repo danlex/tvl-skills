@@ -12,7 +12,7 @@ Each skill combines concise operating instructions with the references, scripts,
 | [`tvl-design-diagram`](skills/tvl-design-diagram/) | Turn rough ideas, systems, workflows, and decision gates into clear Mermaid diagrams with an Ethical AI check. |
 | [`tvl-ethical-ai-audit`](skills/tvl-ethical-ai-audit/) | Audit drafts, claims, citations, plans, and agent behavior for EthicalAI failure modes. |
 | [`tvl-confirmation-bias-audit`](skills/tvl-confirmation-bias-audit/) | Audit conclusions for one-sided evidence, missing alternatives, and failure to falsify. |
-| [`tvl-seo-geo-audit`](skills/tvl-seo-geo-audit/) | Audit pages for technical SEO, structured data, multilingual hygiene, and AI answer visibility. |
+| [`tvl-seo-geo-audit`](skills/tvl-seo-geo-audit/) | Produce evidence-backed SEO/GEO audits with scope, crawler policy, structured data, and AI answer visibility checks. |
 | [`tvl-build-free-website`](skills/tvl-build-free-website/) | Build and publish simple static websites for free with GitHub Pages. |
 
 ## Install
@@ -167,6 +167,8 @@ Use $tvl-seo-geo-audit to audit this page for technical SEO, structured data, mu
 
 The skill audits indexability, canonical and hreflang, sitemap freshness, robots.txt, titles, descriptions, headings, structured data, Open Graph, content quality, entity clarity, source trust, and AI answer visibility. It treats GEO as an extension of good SEO: crawlable, clear, factual, source-backed content that can be understood and cited by search and AI answer systems. It returns `PASS`, `REVISE`, or `BLOCK` with prioritized fixes.
 
+The V2 workflow separates audit mode, evidence state, evidence origin, and findings. It can collect evidence JSON, verify findings against evidence records, render a Markdown report, and check source freshness for official platform guidance. It does not report untested checks as `PASS` and does not treat GEO formatting suggestions, `llms.txt`, schema, or AI crawler access as guaranteed ranking or citation factors.
+
 ### Free website build and publish
 
 ```text
@@ -222,6 +224,7 @@ python3 skills/tvl-design-diagram/scripts/test_templates.py
 python3 skills/tvl-ethical-ai-audit/scripts/test_audit.py
 python3 skills/tvl-confirmation-bias-audit/scripts/test_confirmation_bias_audit.py
 python3 skills/tvl-seo-geo-audit/scripts/test_seo_geo_audit.py
+python3 skills/tvl-seo-geo-audit/scripts/check_reference_freshness.py
 python3 skills/tvl-build-free-website/scripts/test_free_website_skill.py
 ```
 

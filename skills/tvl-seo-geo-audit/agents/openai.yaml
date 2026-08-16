@@ -1,4 +1,4 @@
 interface:
   display_name: "TVL SEO GEO Audit"
   short_description: "Audit pages for SEO and AI answer visibility"
-  default_prompt: "Use $tvl-seo-geo-audit to audit this page for technical SEO, content quality, structured data, and AI answer visibility."
+  default_prompt: "Audit this page for technical SEO, content quality, structured data, multilingual search, and AI answer visibility. Report evidence, limitations, and prioritized fixes."
