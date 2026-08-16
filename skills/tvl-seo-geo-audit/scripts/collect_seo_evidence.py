@@ -432,6 +432,24 @@ def build_evidence(url: str, mode: str, sample: list[str]) -> dict[str, Any]:
             "origin": "MEASURED",
             "value": None,
         },
+        {
+            "id": "core_web_vitals_field",
+            "state": "NOT_TESTED",
+            "origin": "MEASURED",
+            "value": None,
+        },
+        {
+            "id": "bing_indexnow",
+            "state": "NOT_TESTED",
+            "origin": "MEASURED",
+            "value": None,
+        },
+        {
+            "id": "crawler_logs",
+            "state": "NOT_TESTED",
+            "origin": "MEASURED",
+            "value": None,
+        },
     ]
 
     return {

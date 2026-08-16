@@ -28,6 +28,9 @@ REQUIRED_REFERENCES = (
     "references/evidence-contract.md",
     "references/seo-geo-rubric.md",
     "references/crawler-policy.md",
+    "references/bing-indexnow.md",
+    "references/wcag-accessibility.md",
+    "references/structured-data-profiles.md",
     "references/source-register.md",
     "references/evaluation-cases.md",
 )
@@ -113,7 +116,16 @@ def test_rubric_rows_are_populated_and_current() -> None:
         "`llms.txt` and RSL",
         "Accessibility basics",
         "Lighthouse lab audit",
-        "Image and video discoverability",
+        "Core Web Vitals field data",
+        "Bing and IndexNow",
+        "WCAG 2.2 accessibility mapping",
+        "Spam and abuse policy",
+        "Rich result eligibility by page type",
+        "Image SEO deep check",
+        "Video SEO deep check",
+        "External citation and source-link integrity",
+        "SERP or cited-source comparison",
+        "Log-based crawler verification",
         "Measurement",
     ):
         assert required in text
@@ -141,6 +153,11 @@ def test_source_register_has_official_urls_and_fresh_dates() -> None:
     text = read(REFERENCES / "source-register.md")
     assert "developer.chrome.com/docs/lighthouse/overview" in text
     assert "developer.chrome.com/docs/devtools/lighthouse" in text
+    assert "developers.google.com/search/docs/appearance/core-web-vitals" in text
+    assert "www.bing.com/webmasters/help/webmaster-guidelines" in text
+    assert "www.bing.com/indexnow/getstarted" in text
+    assert "www.w3.org/TR/WCAG22" in text
+    assert "developers.google.com/search/docs/essentials/spam-policies" in text
 
 
 def test_evaluation_cases_are_behavioral() -> None:
@@ -162,9 +179,17 @@ def test_evaluation_cases_are_behavioral() -> None:
         "Private Documentation",
         "Browser and Lighthouse Available",
         "Browser Access Unavailable",
+        "Core Web Vitals Field Data Missing",
+        "Bing and IndexNow Evidence Needed",
+        "WCAG 2.2 Manual Conformance Not Verified",
+        "Scaled Content Abuse Risk",
+        "Rich Result Profile Mismatch",
+        "Source Link Does Not Support Claim",
     ):
         assert required in joined
     assert any(case["id"] == "browser_lighthouse_available" for case in cases)
+    assert any(case["id"] == "core_web_vitals_field" for case in cases)
+    assert any(case["id"] == "bing_indexnow" for case in cases)
 
 
 def test_collector_parser_extracts_core_observations() -> None:
@@ -187,6 +212,17 @@ def test_collector_parser_extracts_core_observations() -> None:
     assert parsed["hreflang"][0]["hreflang"] == "ro"
     assert parsed["json_ld"][0]["valid"] is True
     assert parsed["headings"][0]["level"] == "h1"
+
+
+def test_new_references_cover_p0_p1_contracts() -> None:
+    bing = read(REFERENCES / "bing-indexnow.md")
+    wcag = read(REFERENCES / "wcag-accessibility.md")
+    profiles = read(REFERENCES / "structured-data-profiles.md")
+    assert "IndexNow" in bing and "Bing Webmaster Tools" in bing
+    for principle in ("Perceivable", "Operable", "Understandable", "Robust"):
+        assert principle in wcag
+    for schema_type in ("Article", "Product", "LocalBusiness", "VideoObject", "FAQPage"):
+        assert schema_type in profiles
 
 
 def test_collector_refuses_unsafe_urls() -> None:
@@ -215,6 +251,9 @@ def sample_payload() -> dict:
             {"id": "x_robots_tag", "state": "NOT_FOUND", "origin": "MEASURED", "value": None},
             {"id": "canonical", "state": "CONFIRMED", "origin": "MEASURED", "value": "https://example.com"},
             {"id": "indexation_intent", "state": "CONFIRMED", "origin": "USER_PROVIDED", "value": "public"},
+            {"id": "core_web_vitals_field", "state": "NOT_TESTED", "origin": "MEASURED", "value": None},
+            {"id": "bing_indexnow", "state": "NOT_TESTED", "origin": "MEASURED", "value": None},
+            {"id": "crawler_logs", "state": "NOT_TESTED", "origin": "MEASURED", "value": None},
         ],
         "findings": [],
     }
@@ -299,6 +338,7 @@ if __name__ == "__main__":
         test_source_register_has_official_urls_and_fresh_dates,
         test_evaluation_cases_are_behavioral,
         test_collector_parser_extracts_core_observations,
+        test_new_references_cover_p0_p1_contracts,
         test_collector_refuses_unsafe_urls,
         test_lighthouse_not_tested_shape,
         test_verifier_rollup_and_suppression,

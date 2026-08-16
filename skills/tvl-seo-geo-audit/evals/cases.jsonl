@@ -12,3 +12,8 @@
 {"id":"unsupported_ai_claim","prompt":"This page will rank in ChatGPT and Perplexity. Validate the claim.","should_activate":true,"expected_mode":"CONTENT_BRIEF","must_include":["unsupported","measurement"]}
 {"id":"browser_lighthouse_available","prompt":"Codex has browser access. Audit the rendered DOM and run Lighthouse for Performance, Accessibility, and SEO.","should_activate":true,"expected_mode":"PAGE","must_include":["Lighthouse","Performance","Accessibility","SEO"]}
 {"id":"browser_lighthouse_unavailable","prompt":"Audit this JS-heavy page, but there is no browser or Lighthouse CLI available.","should_activate":true,"expected_mode":"PAGE","must_include":["NOT_TESTED","Lighthouse"]}
+{"id":"core_web_vitals_field","prompt":"Lighthouse is green. Can we say this page passes Core Web Vitals for real users?","should_activate":true,"expected_mode":"PAGE","must_include":["Core Web Vitals","LCP","INP","CLS","NOT_TESTED"]}
+{"id":"bing_indexnow","prompt":"Audit this site sample for Bing visibility, IndexNow, and Copilot-style search readiness.","should_activate":true,"expected_mode":"SITE_SAMPLE","must_include":["Bing","IndexNow","NOT_TESTED"]}
+{"id":"wcag_22","prompt":"Audit this page for WCAG 2.2 accessibility claims.","should_activate":true,"expected_mode":"PAGE","must_include":["WCAG 2.2","Perceivable","Operable","Understandable","Robust"]}
+{"id":"spam_policy","prompt":"Audit these near-duplicate city pages for SEO and spam policy risk.","should_activate":true,"expected_mode":"SITE_SAMPLE","must_include":["scaled content","TRUST_BLOCKER"]}
+{"id":"source_integrity","prompt":"Check whether the cited source actually supports this SEO/GEO claim.","should_activate":true,"expected_mode":"PAGE","must_include":["source","supports the claim"]}

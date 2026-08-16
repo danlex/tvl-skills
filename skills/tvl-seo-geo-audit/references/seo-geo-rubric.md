@@ -34,7 +34,16 @@ For inaccessible URLs, offer a labelled framework-only audit and mark unfetched 
 | Internal linking | Navigation, anchors, same-site links in collected page or declared sample. | Page is reachable with descriptive anchors within the audited scope. | Reachable but weakly linked. | Orphaning or conflicting navigation prevents intended discovery, when site-sample evidence supports that conclusion. |
 | Accessibility basics | Semantic landmarks, meaningful links, alt text for informative images, contrast/focus signals where inspectable. | Page is usable by people and machines in the checked areas. | Missing alt text, vague links, weak semantics, or likely contrast/focus issue needing browser/tool verification. | Accessibility issue materially prevents access to core content or task completion. |
 | Lighthouse lab audit | Lighthouse JSON, Chrome DevTools Lighthouse report, or `scripts/run_lighthouse_audit.py` output for `performance`, `accessibility`, and `seo`. | Categories are measured and no material Lighthouse issue contradicts the audit. | Low score or material diagnostic in Performance, Accessibility, or SEO needs review; unavailable Lighthouse is `NOT_TESTED`. | A Lighthouse-confirmed issue materially prevents access, indexing, or task completion. Lighthouse score alone is not a blocker. |
-| Image and video discoverability | Image/video presence, alt text, filenames, captions/transcripts, structured data when relevant. | Important media are discoverable and described. | Media discoverability or text alternatives need improvement. | Core content exists only in inaccessible media for the intended search/AI use case. |
+| Core Web Vitals field data | CrUX, PageSpeed Insights field data, or Search Console evidence for LCP, INP, and CLS. | Field data meets current thresholds or no field data is applicable/available and labelled honestly. | Lab and field data diverge, field data is missing for a performance claim, or one metric needs improvement. | Severe field-data issue materially prevents access or task completion; score alone is not a blocker. |
+| Bing and IndexNow | Bingbot policy, Bing Webmaster Tools export, IndexNow key/submission evidence, canonical/indexability of submitted URLs. | Bing visibility evidence is collected and aligned with intended policy. | Bing/IndexNow is useful but unverified, incomplete, or disconnected from canonical/sitemap policy. | Private, noindexed, noncanonical, or misleading URLs are submitted or optimized for Bing visibility against intent. |
+| WCAG 2.2 accessibility mapping | WCAG 2.2 principle mapping, Lighthouse/axe/manual evidence, rendered DOM, keyboard/focus review when available. | Checked evidence supports Perceivable, Operable, Understandable, and Robust basics. | Automation finds issues or full conformance is unverified. | Core content or task completion is inaccessible in a way that materially blocks users. |
+| Spam and abuse policy | Content purpose, originality, scaled/automated content patterns, doorway behavior, expired-domain/site-reputation signals, cloaking evidence. | No evidence of spam-policy risk in the audited scope. | Content pattern or governance needs review for people-first quality. | Evidence indicates scaled content abuse, cloaking, doorway behavior, fake reputation borrowing, or other serious policy violation. |
+| Rich result eligibility by page type | Page type, structured-data profile, required/recommended fields, visible-content match, rich-result validation where available. | Schema profile is eligible, valid, and content-consistent. | Schema is incomplete, generic, or validation is unavailable. | Schema profile is deceptive, ineligible for the visible page, or marks up unsupported claims. |
+| Image SEO deep check | Image purpose, alt text, filenames, captions/surrounding text, dimensions, compression, lazy loading, image structured data or sitemap when important. | Important images are discoverable, accessible, and performance-aware. | Image metadata, compression, dimensions, or lazy-loading behavior need improvement. | Core content exists only in inaccessible images or images materially block performance/accessibility. |
+| Video SEO deep check | Video accessibility, public fetchability, transcript/captions, thumbnail, `VideoObject`, key moments, `max-video-preview`, video file access. | Important videos are discoverable and have sufficient text alternatives. | Video metadata, captions, transcript, thumbnails, or structured data need improvement. | Core content exists only in inaccessible video or crawler/user access is blocked against intent. |
+| External citation and source-link integrity | Outbound source URLs, status, relevance, claim-to-source match, date/freshness, source authority for the claim. | Load-bearing external citations are reachable and support the claims. | Source is stale, weak, indirect, broken, or does not fully support the claim. | Fabricated, broken, irrelevant, or contradictory source supports a material claim. |
+| SERP or cited-source comparison | Search/citation sample, target query, sources currently ranking/cited, passage comparison, source dates. | Optional comparison is measured and scoped to the query/source sample. | Comparison is unavailable or shows structural/evidence gaps. | Report claims competitive/citation superiority without measured evidence. |
+| Log-based crawler verification | Server/CDN logs, verified bot requests, user-agent/IP verification, timestamp, URL, status. | Relevant crawlers are observed as intended in logs. | Logs unavailable, incomplete, or show crawl gaps. | Logs prove relevant crawlers are blocked or receiving wrong status for intended public pages. |
 | AI answer visibility | Crawlable text, direct answers, definitions, factual atoms, source-backed claims, freshness, engine target. | Content is understandable and extractable, with no unsupported AI-visibility claims. | Readability/extractability can improve through definitions, tables, examples, and source-backed statements. | Page relies on vague marketing, fabricated facts, blocked relevant discovery bots, or inaccessible core content. |
 | Measurement | Search Console, analytics, AI referral review, dated manual checks, or user-provided exports. | Measurement plan or evidence matches the claims made. | Measurement exists but misses index coverage, query tracking, AI referrals, or date/source. | SEO/GEO impact, ranking, traffic, or AI citation claims are made with no measurement. |
 | `llms.txt` and RSL | `llms.txt`, `/.well-known/rsl.json`, `/RSL.txt`, or explicit absence. | Presence or absence is documented without ranking claims. | File exists but its purpose, freshness, or governance stance is unclear. | File is presented as required for Google rankings or AI citations, or conflicts with governance intent. |
@@ -92,10 +101,13 @@ When a check cannot be performed, name the tool or evidence that can assess it:
 - Rendered DOM: browser automation, Playwright, Chrome DevTools, or a rendering crawler.
 - Lighthouse lab checks: `scripts/run_lighthouse_audit.py`, Chrome DevTools Lighthouse panel, Lighthouse CLI, Lighthouse CI, or PageSpeed Insights. Use categories `performance`, `accessibility`, and `seo`.
 - Core Web Vitals field data: PageSpeed Insights, CrUX, or Search Console.
+- Bing and IndexNow: Bing Webmaster Tools, Bingbot logs, IndexNow key/submission logs, or API output.
 - Search performance: Search Console export or verified property access.
-- Backlinks/off-page mentions: backlink index or search/citation sample. Off-page is out of default scope.
+- WCAG 2.2: Lighthouse, axe, manual keyboard review, accessibility tree, screen-reader/manual QA.
+- Backlinks/off-page mentions: backlink index or search/citation sample. Off-page is out of default scope unless explicitly requested.
 - Structured data eligibility: Google Rich Results Test or Schema.org validator, plus visible-content review.
 - Accessibility: Lighthouse, axe, manual keyboard check, contrast tool.
+- Crawler logs: server logs, CDN logs, verified bot IP/user-agent checks.
 
 ## Recommended Fix Patterns
 
@@ -103,6 +115,8 @@ Technical:
 
 - Resolve noindex, `X-Robots-Tag`, canonical, hreflang, and robots conflicts.
 - Compare raw HTML and rendered DOM for JavaScript-heavy pages.
+- Separate Lighthouse lab results from Core Web Vitals field data.
+- Validate Bing/IndexNow discovery only when Bing-specific evidence exists.
 - Make core content available in initial HTML or verified rendered output.
 - Validate JSON-LD and remove unsupported fields.
 - Use sitemap `lastmod` only for significant content, structured-data, or link changes.
@@ -112,12 +126,14 @@ Editorial:
 - Make titles and descriptions accurate, concise, and differentiated without fixed character rules.
 - Add direct definitions, examples, tables, and answer passages when they improve user comprehension.
 - Add sources, dates, authorship, organization identity, and examples for load-bearing claims.
+- Verify source links and ensure each source actually supports the claim it is attached to.
 - Replace broad marketing claims with precise, verifiable statements.
 
 Governance:
 
 - Decide crawler policy by search visibility, model-training, user-triggered retrieval, privacy, and ownership goals.
 - Do not recommend allowing every AI crawler by default.
+- Check spam-policy risk for scaled pages, third-party hosted content, expired-domain reuse, doorway pages, and cloaking when signals are present.
 - Document measurement rather than promising outcomes.
 
 ## Common Mistakes

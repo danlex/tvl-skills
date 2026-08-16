@@ -286,3 +286,117 @@ Expected audit:
 - Verdict: `REVISE` if rendered evidence is material to the page
 - Reason: rendered DOM and Lighthouse checks are `NOT_TESTED`, not failures and not passes.
 - Required fix: name Chrome DevTools Lighthouse, Lighthouse CLI, or PageSpeed Insights as the tool that can assess Performance, Accessibility, and SEO.
+
+## Case 15: Core Web Vitals Field Data Missing
+
+Mode: `PAGE`
+
+Measured evidence:
+
+```text
+Lighthouse Performance: 0.96
+Core Web Vitals field data: not available
+User claim: "The page passes Core Web Vitals for real users."
+```
+
+Expected audit:
+
+- Verdict: `REVISE`
+- Reason: Lighthouse is lab evidence and cannot confirm field LCP, INP, or CLS.
+- Required fix: label field Core Web Vitals `NOT_TESTED` and request PageSpeed Insights field data, CrUX, or Search Console evidence.
+
+## Case 16: Bing and IndexNow Evidence Needed
+
+Mode: `SITE_SAMPLE`
+
+Measured evidence:
+
+```text
+Google indexability: confirmed
+Bing Webmaster Tools: not provided
+IndexNow key: not found
+User asks: "Will this improve Copilot visibility?"
+```
+
+Expected audit:
+
+- Verdict: `REVISE`
+- Reason: Bing/Microsoft ecosystem visibility is separate from Google evidence and needs Bing-specific evidence.
+- Required fix: check Bingbot policy, Bing Webmaster Tools evidence, and IndexNow setup. Do not promise Copilot visibility.
+
+## Case 17: WCAG 2.2 Manual Conformance Not Verified
+
+Mode: `PAGE`
+
+Measured evidence:
+
+```text
+Lighthouse Accessibility: 0.98
+Manual keyboard test: not performed
+Screen reader check: not performed
+```
+
+Expected audit:
+
+- Verdict: `REVISE` when accessibility conformance is claimed
+- Reason: Lighthouse is useful lab evidence but does not prove full WCAG 2.2 conformance.
+- Required fix: map issues to Perceivable, Operable, Understandable, Robust and mark full conformance `UNVERIFIABLE`.
+
+## Case 18: Scaled Content Abuse Risk
+
+Mode: `SITE_SAMPLE`
+
+Measured evidence:
+
+```text
+Sample includes 80 near-duplicate city pages.
+Pages differ only by city name.
+No local proof, author, service evidence, or useful unique content.
+Indexation intent: public search.
+```
+
+Expected audit:
+
+- Verdict: `BLOCK`
+- Blocker category: `TRUST_BLOCKER`
+- Reason: sample shows spam-policy risk from scaled pages made for search rather than users.
+- Required fix: consolidate or rewrite with real local evidence and useful page purpose.
+
+## Case 19: Rich Result Profile Mismatch
+
+Mode: `PAGE`
+
+Measured evidence:
+
+```text
+Visible page: B2B consulting service
+JSON-LD: Product with AggregateRating and Offer
+Visible price: none
+Visible reviews: none
+```
+
+Expected audit:
+
+- Verdict: `BLOCK`
+- Blocker category: `STRUCTURED_DATA_BLOCKER`
+- Reason: rich-result profile is not supported by visible content.
+- Required fix: use an appropriate Organization/Service-oriented profile and remove unsupported rating/offer claims.
+
+## Case 20: Source Link Does Not Support Claim
+
+Mode: `PAGE`
+
+Measured evidence:
+
+```text
+Claim: "Our framework is cited by Google as the best AI SEO method."
+Source link: Google SEO Starter Guide
+Source content: general SEO guidance, no mention of the framework.
+```
+
+Expected audit:
+
+- Verdict: `BLOCK`
+- Blocker category: `TRUST_BLOCKER`
+- Reason: external citation is real but does not support the claim.
+- Required fix: remove the claim or replace it with accurately sourced evidence.

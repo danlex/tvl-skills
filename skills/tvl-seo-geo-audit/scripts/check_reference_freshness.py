@@ -48,7 +48,15 @@ def check(max_age_days: int = 180, today: date | None = None) -> list[str]:
             errors.append(f"required crawler agent missing: {agent}")
     for required_url in (
         "developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+        "developers.google.com/search/docs/appearance/core-web-vitals",
+        "developers.google.com/search/docs/essentials/spam-policies",
+        "developers.google.com/search/docs/appearance/google-images",
+        "developers.google.com/search/docs/appearance/video",
+        "developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
         "developer.chrome.com/docs/lighthouse/overview",
+        "bing.com/webmasters/help/webmaster-guidelines",
+        "bing.com/indexnow/getstarted",
+        "w3.org/TR/WCAG22",
         "developers.openai.com/api/docs/bots",
         "support.claude.com",
         "docs.perplexity.ai/docs/resources/perplexity-crawlers",
