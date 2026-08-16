@@ -23,6 +23,9 @@ python3 skills/tvl-write-linkedin-post/scripts/test_validator.py
 python3 skills/tvl-write-linkedin-post/scripts/validate_post.py --help
 python3 skills/tvl-design-diagram/scripts/test_templates.py
 python3 skills/tvl-ethical-ai-audit/scripts/test_audit.py
+python3 skills/tvl-confirmation-bias-audit/scripts/test_confirmation_bias_audit.py
+python3 skills/tvl-seo-geo-audit/scripts/test_seo_geo_audit.py
+python3 skills/tvl-build-free-website/scripts/test_free_website_skill.py
 ```
 
 When the OpenAI skill validation utility is available, also run:
@@ -34,6 +37,8 @@ python3 /root/.codex/skills/oai/skill-creator/scripts/quick_validate.py \
   skills/tvl-design-diagram
 python3 /root/.codex/skills/oai/skill-creator/scripts/quick_validate.py \
   skills/tvl-ethical-ai-audit
+python3 /root/.codex/skills/oai/skill-creator/scripts/quick_validate.py \
+  skills/tvl-build-free-website
 ```
 
 ## Publication rules

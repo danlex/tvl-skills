@@ -26,3 +26,5 @@ jobs:
         run: python skills/tvl-confirmation-bias-audit/scripts/test_confirmation_bias_audit.py
       - name: Run SEO GEO audit tests
         run: python skills/tvl-seo-geo-audit/scripts/test_seo_geo_audit.py
+      - name: Run free website skill tests
+        run: python skills/tvl-build-free-website/scripts/test_free_website_skill.py
