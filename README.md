@@ -167,7 +167,7 @@ Use $tvl-seo-geo-audit to audit this page for technical SEO, structured data, mu
 
 The skill audits indexability, canonical and hreflang, sitemap freshness, robots.txt, titles, descriptions, headings, structured data, Open Graph, content quality, entity clarity, source trust, and AI answer visibility. It treats GEO as an extension of good SEO: crawlable, clear, factual, source-backed content that can be understood and cited by search and AI answer systems. It returns `PASS`, `REVISE`, or `BLOCK` with prioritized fixes.
 
-The V2 workflow separates audit mode, evidence state, evidence origin, and findings. It can collect evidence JSON, verify findings against evidence records, render a Markdown report, and check source freshness for official platform guidance. It does not report untested checks as `PASS` and does not treat GEO formatting suggestions, `llms.txt`, schema, or AI crawler access as guaranteed ranking or citation factors.
+The V2 workflow separates audit mode, evidence state, evidence origin, and findings. It can collect evidence JSON, verify findings against evidence records, render a Markdown report, and check source freshness for official platform guidance. When browser or Lighthouse tooling is available, it can also use rendered-DOM evidence and Lighthouse Performance, Accessibility, and SEO checks. It does not report untested checks as `PASS` and does not treat Lighthouse scores, GEO formatting suggestions, `llms.txt`, schema, or AI crawler access as guaranteed ranking or citation factors.
 
 ### Free website build and publish
 

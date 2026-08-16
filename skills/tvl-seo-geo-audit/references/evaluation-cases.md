@@ -247,3 +247,42 @@ Expected audit:
 - Blocker category: `PUBLICATION_BLOCKER`
 - Reason: private/non-indexed content should not be optimized for public AI visibility without a publication decision.
 - Required fix: clarify governance or create a public redacted page.
+
+## Case 13: Browser and Lighthouse Available
+
+Mode: `PAGE`
+
+Measured evidence:
+
+```text
+Browser access: available
+Rendered DOM: core content matches initial HTML plus expected interactive enhancements
+Lighthouse Performance: 0.71
+Lighthouse Accessibility: 0.96
+Lighthouse SEO: 0.92
+Core Web Vitals field data: not available
+```
+
+Expected audit:
+
+- Verdict: `REVISE`
+- Reason: Lighthouse Performance lab score and diagnostics need review, but it is not field Core Web Vitals or a ranking guarantee.
+- Required fix: report Lighthouse as lab evidence, list field Core Web Vitals as `NOT_TESTED`, and verify improvements with another Lighthouse run plus field data when available.
+
+## Case 14: Browser Access Unavailable
+
+Mode: `PAGE`
+
+Measured evidence:
+
+```text
+Raw HTML fetched
+Browser access: unavailable
+Lighthouse CLI: unavailable
+```
+
+Expected audit:
+
+- Verdict: `REVISE` if rendered evidence is material to the page
+- Reason: rendered DOM and Lighthouse checks are `NOT_TESTED`, not failures and not passes.
+- Required fix: name Chrome DevTools Lighthouse, Lighthouse CLI, or PageSpeed Insights as the tool that can assess Performance, Accessibility, and SEO.

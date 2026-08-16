@@ -25,6 +25,8 @@ GEO means generative engine optimization: making public content easier for AI se
    - For URL audits, run `scripts/collect_seo_evidence.py` when network access and local policy allow it, or use equivalent tool output.
    - If fetching is blocked, retry a source at most once, record the failure, and continue only with checks that can be labelled honestly.
    - If rendered DOM is unavailable, label rendered-only checks `NOT_TESTED`; do not infer absence of client-injected content from raw HTML alone.
+   - If Codex, Claude Code, or the current agent environment has browser access, use it to compare rendered DOM with raw HTML and to verify visual/accessibility issues. Label those observations `MEASURED`.
+   - If Chrome/Lighthouse tooling is available, run `scripts/run_lighthouse_audit.py` or an equivalent Lighthouse report for `performance`, `accessibility`, and `seo`. Treat Lighthouse as lab evidence, not as field Core Web Vitals or ranking proof. If unavailable, list Lighthouse as `NOT_TESTED`.
    - For full or repeatable audits, save evidence JSON and generate the report from verified findings with `scripts/render_audit_report.py`. For a small one-page audit, a chat report is enough unless the user asks for files.
 5. Generate candidate findings only from evidence records. Every finding must include location, evidence state, origin, evidence, impact, fix, verification method, and effort.
 6. Verify findings:
@@ -88,6 +90,13 @@ CRAWLER POLICY
 | Provider | Agent | Purpose | Current result | Intended policy | Action |
 | --- | --- | --- | --- | --- | --- |
 
+LIGHTHOUSE
+| Category | Evidence state | Origin | Score | Note |
+| --- | --- | --- | --- | --- |
+| Performance | CONFIRMED | MEASURED | ... | Lab score, not field CWV |
+| Accessibility | CONFIRMED | MEASURED | ... | ... |
+| SEO | CONFIRMED | MEASURED | ... | Basic Lighthouse SEO checks |
+
 NOT TESTED
 | Check | Reason | Evidence needed | Tool that can assess it |
 | --- | --- | --- | --- |
@@ -115,6 +124,7 @@ Core indexability set for URL audits: HTTP/final URL, robots meta, `X-Robots-Tag
 - For AI crawlers, separate search discovery, model training, and user-triggered fetchers. Do not recommend allowing every AI bot by default.
 - For Google AI features, state that Google requires no special AI markup, no `llms.txt`, and no artificial content chunking.
 - For page-only audits, do not make sitewide internal-linking, sitemap coverage, Search Console, backlink, or performance claims unless evidence is provided.
+- Lighthouse Performance, Accessibility, and SEO checks are useful lab evidence. Do not treat Lighthouse scores as ranking guarantees, field Core Web Vitals, or complete accessibility certification.
 - For large sites, sample by URL pattern and template. State sample size, exclusions, and limits on generalization.
 - Respect `robots.txt`, use bounded retries, avoid excessive requests, and never submit forms, authenticate, or make state-changing requests.
 

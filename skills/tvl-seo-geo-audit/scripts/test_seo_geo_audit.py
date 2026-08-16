@@ -20,6 +20,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from check_reference_freshness import check as check_reference_freshness  # noqa: E402
 from collect_seo_evidence import UnsafeUrlError, parse_html, validate_public_http_url  # noqa: E402
 from render_audit_report import render_report  # noqa: E402
+from run_lighthouse_audit import not_tested as lighthouse_not_tested  # noqa: E402
 from verify_findings import verify_findings  # noqa: E402
 
 
@@ -36,6 +37,7 @@ REQUIRED_SCRIPTS = (
     "scripts/verify_findings.py",
     "scripts/render_audit_report.py",
     "scripts/check_reference_freshness.py",
+    "scripts/run_lighthouse_audit.py",
 )
 
 REQUIRED_STATES = (
@@ -84,6 +86,8 @@ def test_skill_uses_evidence_states_and_no_false_pass() -> None:
     assert "Never report `PASS`" in text
     assert "Evidence coverage" in text
     assert "X-Robots-Tag" in text
+    assert "Lighthouse" in text
+    assert "performance`, `accessibility`, and `seo`" in text
 
 
 def test_references_have_resolvable_relative_links() -> None:
@@ -108,6 +112,7 @@ def test_rubric_rows_are_populated_and_current() -> None:
         "Raw HTML versus rendered DOM",
         "`llms.txt` and RSL",
         "Accessibility basics",
+        "Lighthouse lab audit",
         "Image and video discoverability",
         "Measurement",
     ):
@@ -133,6 +138,9 @@ def test_crawler_policy_separates_agent_purposes() -> None:
 def test_source_register_has_official_urls_and_fresh_dates() -> None:
     errors = check_reference_freshness(max_age_days=180, today=date(2026, 8, 16))
     assert errors == []
+    text = read(REFERENCES / "source-register.md")
+    assert "developer.chrome.com/docs/lighthouse/overview" in text
+    assert "developer.chrome.com/docs/devtools/lighthouse" in text
 
 
 def test_evaluation_cases_are_behavioral() -> None:
@@ -152,8 +160,11 @@ def test_evaluation_cases_are_behavioral() -> None:
         "GPTBot Blocked, OAI-SearchBot Allowed",
         "Prompt Injection in HTML",
         "Private Documentation",
+        "Browser and Lighthouse Available",
+        "Browser Access Unavailable",
     ):
         assert required in joined
+    assert any(case["id"] == "browser_lighthouse_available" for case in cases)
 
 
 def test_collector_parser_extracts_core_observations() -> None:
@@ -186,6 +197,13 @@ def test_collector_refuses_unsafe_urls() -> None:
             pass
         else:
             raise AssertionError(f"unsafe URL accepted: {url}")
+
+
+def test_lighthouse_not_tested_shape() -> None:
+    result = lighthouse_not_tested("Lighthouse CLI is unavailable")
+    assert result["state"] == "NOT_TESTED"
+    for category in ("performance", "accessibility", "seo"):
+        assert result["categories"][category]["state"] == "NOT_TESTED"
 
 
 def sample_payload() -> dict:
@@ -282,6 +300,7 @@ if __name__ == "__main__":
         test_evaluation_cases_are_behavioral,
         test_collector_parser_extracts_core_observations,
         test_collector_refuses_unsafe_urls,
+        test_lighthouse_not_tested_shape,
         test_verifier_rollup_and_suppression,
         test_verifier_blocks_p0_and_renderer_uses_verified_json,
         test_openai_metadata_neutral_prompt,

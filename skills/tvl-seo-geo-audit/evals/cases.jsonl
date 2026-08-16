@@ -10,3 +10,5 @@
 {"id":"private_docs","prompt":"Our private customer docs return 401. Optimize them for public AI answers.","should_activate":true,"expected_mode":"PAGE","must_include":["PUBLICATION_BLOCKER"]}
 {"id":"site_sample","prompt":"Audit these 200 URLs for SEO/GEO and summarize template-level issues.","should_activate":true,"expected_mode":"SITE_SAMPLE","must_include":["sample","limits on generalization"]}
 {"id":"unsupported_ai_claim","prompt":"This page will rank in ChatGPT and Perplexity. Validate the claim.","should_activate":true,"expected_mode":"CONTENT_BRIEF","must_include":["unsupported","measurement"]}
+{"id":"browser_lighthouse_available","prompt":"Codex has browser access. Audit the rendered DOM and run Lighthouse for Performance, Accessibility, and SEO.","should_activate":true,"expected_mode":"PAGE","must_include":["Lighthouse","Performance","Accessibility","SEO"]}
+{"id":"browser_lighthouse_unavailable","prompt":"Audit this JS-heavy page, but there is no browser or Lighthouse CLI available.","should_activate":true,"expected_mode":"PAGE","must_include":["NOT_TESTED","Lighthouse"]}
