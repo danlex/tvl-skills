@@ -1,0 +1,8 @@
+interface:
+  display_name: "TVL Detect AI Writing"
+  short_description: "Detect formulaic AI writing patterns and score the text"
+  default_prompt: "Use $tvl-detect-ai-writing to check this text for AI patterns and return a Pattern Score with a report."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+policy:
+  allow_implicit_invocation: true
