@@ -12,6 +12,7 @@ Each skill combines concise operating instructions with the references, scripts,
 | [`tvl-design-diagram`](skills/tvl-design-diagram/) | Turn rough ideas, systems, workflows, and decision gates into clear Mermaid diagrams with an Ethical AI check. |
 | [`tvl-ethical-ai-audit`](skills/tvl-ethical-ai-audit/) | Audit drafts, claims, citations, plans, and agent behavior for EthicalAI failure modes. |
 | [`tvl-confirmation-bias-audit`](skills/tvl-confirmation-bias-audit/) | Audit conclusions for one-sided evidence, missing alternatives, and failure to falsify. |
+| [`tvl-detect-ai-writing`](skills/tvl-detect-ai-writing/) | Detect formulaic AI writing patterns in posts, articles, and replies, and return a Pattern Score with a report. |
 | [`tvl-seo-geo-audit`](skills/tvl-seo-geo-audit/) | Produce evidence-backed SEO/GEO audits with scope, crawler policy, structured data, and AI answer visibility checks. |
 | [`tvl-build-free-website`](skills/tvl-build-free-website/) | Build and publish simple static websites for free with GitHub Pages. |
 
@@ -55,6 +56,12 @@ Install the confirmation bias auditor:
 
 ```bash
 npx skills add danlex/tvl-skills --skill tvl-confirmation-bias-audit
+```
+
+Install the AI writing detector:
+
+```bash
+npx skills add danlex/tvl-skills --skill tvl-detect-ai-writing
 ```
 
 Install the SEO/GEO auditor:
@@ -159,6 +166,14 @@ The skill focuses on confirmation bias: whether the answer stated and tested the
 
 Anonymized example patterns include: mistaking co-primed reviewer agreement for independent confirmation, treating generic website navigation as proof that a specific archive exists, declaring a best fix before measurement, declaring business payback from stacked assumptions, and generalizing a metric from one small sample while ignoring variance.
 
+### AI writing detection
+
+```text
+Use $tvl-detect-ai-writing to check this LinkedIn draft for AI patterns before I publish.
+```
+
+The skill analyzes short-form professional writing — LinkedIn posts, blog excerpts, web copy, and X/Twitter replies in reply mode — for formulaic AI tells. It returns a Pattern Score from 0 to 10, highlights the exact phrases that create each pattern, explains the mechanism, and runs a validation checklist. It penalizes combination and density rather than isolated occurrences, and it inverts the register rules in reply mode so casual phrasing is not mistaken for slop. It does not rewrite. A deterministic pre-scan in `scripts/scan_ai_patterns.py` flags the regex-detectable tells (negative correction, em-dash density, hashtags, discourse-marker openers, focal-word lexicon, tricolon density) as evidence for the full review.
+
 ### SEO and GEO audit
 
 ```text
@@ -201,6 +216,12 @@ skills/
     agents/openai.yaml
     references/
     scripts/
+  tvl-detect-ai-writing/
+    SKILL.md
+    agents/openai.yaml
+    assets/icon.svg
+    references/
+    scripts/
   tvl-seo-geo-audit/
     SKILL.md
     agents/openai.yaml
@@ -223,6 +244,7 @@ python3 skills/tvl-write-linkedin-post/scripts/test_validator.py
 python3 skills/tvl-design-diagram/scripts/test_templates.py
 python3 skills/tvl-ethical-ai-audit/scripts/test_audit.py
 python3 skills/tvl-confirmation-bias-audit/scripts/test_confirmation_bias_audit.py
+python3 skills/tvl-detect-ai-writing/scripts/test_detect_ai_writing.py
 python3 skills/tvl-seo-geo-audit/scripts/test_seo_geo_audit.py
 python3 skills/tvl-seo-geo-audit/scripts/check_reference_freshness.py
 python3 skills/tvl-build-free-website/scripts/test_free_website_skill.py
