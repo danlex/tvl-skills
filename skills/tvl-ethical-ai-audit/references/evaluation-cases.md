@@ -7,6 +7,8 @@ the expected `VERDICT` and the primary mode(s) that should fire. Cases marked
 
 Mode names must match the rubric exactly. Verdicts are `PASS`, `REVISE`, or `BLOCK`.
 
+A machine-readable copy of these cases lives in [evaluation-cases.csv](evaluation-cases.csv) (columns: `id, expected_verdict, expected_primary_modes, forbidden_modes, draft, note`; modes are `|`-separated). To measure the skill, audit each case's `draft`, record results as `id,verdict,modes`, and run `scripts/score_cases.py results.csv` — it reports per-case `PASS`/`FAIL`, verdict accuracy, and false-positive count. Behavioral scoring needs an LLM, so this harness runs in the loop, not in pure-Python CI.
+
 ### EAA-01 — Fabricated everything
 - Expected verdict: BLOCK
 - Primary modes: Source fabrication, Overconfidence, Automation bias, Scope creep

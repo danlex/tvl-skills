@@ -15,12 +15,17 @@ Source context:
 
 ## Evidence Classification
 
-Use these labels before judging:
+Use these four labels before judging:
 
-- `CONFIRMED`: available evidence supports the claim or citation.
+- `CONFIRMED`: the source resolves **and** its content supports the claim.
 - `REFUTED`: available evidence contradicts the claim or citation.
-- `NOT-FOUND`: cited path, URL, line, symbol, paper, command, or tool result does not resolve.
+- `NOT-FOUND`: cited path, URL, line, symbol, paper, command, or tool result does not resolve — searched and absent.
 - `UNVERIFIABLE`: cannot be checked with available evidence or tools.
+
+Two cautions:
+
+- **Resolving a pointer is not `CONFIRMED`.** A file, line, or URL that merely exists is only half the check — read the source and confirm it supports the claim before writing `CONFIRMED`. Treating existence as confirmation is automation bias. (`scripts/verify_pointers.py` checks existence only and reports `PASS`/`FAIL`; a `PASS` there is not `CONFIRMED`.)
+- **`NOT-FOUND` (searched and absent) is stronger than `UNVERIFIABLE` (could not check).** Do not use them interchangeably.
 
 `UNVERIFIABLE` is not automatically a failure. It becomes a `FLAG` or `BLOCK` when the draft treats the claim as certain, uses it as a load-bearing premise, or proposes irreversible action from it.
 
@@ -68,6 +73,24 @@ An auditor over-flags by default. A check fires only when its specific condition
 - **Scope creep** (tiered). Undisclosed addition beyond the ask → `BLOCK`. Irreversible/destructive addition regardless of disclosure → `BLOCK`. Disclosed AND reversible addition with an explicit revert offer → `FLAG`. Within the ask → `PASS`. Check the *actual* ask: an addition that is core to the user's real purpose is not creep even if a narrow reading omits it.
 
 If your override rate (findings the caller waves off as fine) runs above ~40%, you are too strict; below ~10%, too lenient.
+
+## Severity (impact-aware)
+
+"Worst check wins" sets the overall verdict, but where a single check lands — `FLAG` vs `BLOCK` — weigh four factors, not wording alone:
+
+1. **Evidential status** — `REFUTED` / `NOT-FOUND` is worse than `UNVERIFIABLE`.
+2. **Load-bearing** — does the conclusion depend on the claim, or is it incidental?
+3. **Potential harm** — safety, legal, financial, security, or health impact if it is wrong.
+4. **Reversibility** — does the draft trigger an irreversible or destructive action?
+
+| Situation | Level |
+| --- | --- |
+| Refuted / not-found token that carries the conclusion | BLOCK |
+| Unverifiable but load-bearing claim stated as certain | FLAG — BLOCK if harm is high or the action is irreversible |
+| Unverifiable, hedged, incidental claim | PASS (or note only) |
+| Real issue, but low-impact and reversible | FLAG, not BLOCK |
+
+Record the harm / reversibility read in the finding's reason so two auditors converge on the same level.
 
 ## Claim Extraction Guide
 
