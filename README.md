@@ -124,15 +124,23 @@ tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/tvl-skills.g
 
 claude.ai installs a skill from an uploaded `.zip`, no command line required. Available on Free, Pro, Max, Team, and Enterprise plans; requires code execution to be enabled.
 
-1. Download the skill zip:
+1. Download a skill zip:
 
-   [`tvl-ethical-ai-audit.zip`](https://github.com/danlex/tvl-skills/releases/latest/download/tvl-ethical-ai-audit.zip)
+   | Skill | Download |
+   | --- | --- |
+   | Ethical AI audit | [`tvl-ethical-ai-audit.zip`](https://github.com/danlex/tvl-skills/releases/latest/download/tvl-ethical-ai-audit.zip) |
+   | AI writing detector | [`tvl-detect-ai-writing.zip`](https://github.com/danlex/tvl-skills/releases/latest/download/tvl-detect-ai-writing.zip) |
+   | Confirmation bias audit | [`tvl-confirmation-bias-audit.zip`](https://github.com/danlex/tvl-skills/releases/latest/download/tvl-confirmation-bias-audit.zip) |
+   | SEO / GEO audit | [`tvl-seo-geo-audit.zip`](https://github.com/danlex/tvl-skills/releases/latest/download/tvl-seo-geo-audit.zip) |
+   | Diagram design | [`tvl-design-diagram.zip`](https://github.com/danlex/tvl-skills/releases/latest/download/tvl-design-diagram.zip) |
+   | LinkedIn post writing | [`tvl-write-linkedin-post.zip`](https://github.com/danlex/tvl-skills/releases/latest/download/tvl-write-linkedin-post.zip) |
+   | Free website build | [`tvl-build-free-website.zip`](https://github.com/danlex/tvl-skills/releases/latest/download/tvl-build-free-website.zip) |
 
 2. In claude.ai, enable code execution under **Settings → Capabilities** (one-time).
 3. Open **Customize → Skills**, then click **+ → Create skill → Upload a skill**.
-4. Select the downloaded zip. The skill activates automatically when you ask Claude to audit, verify, validate, or sanity-check a draft.
+4. Select the downloaded zip. The skill activates automatically when you ask Claude for it.
 
-Every published skill zip is attached to a [GitHub Release](https://github.com/danlex/tvl-skills/releases).
+Every skill's claude.ai package is attached to the rolling [`skills` release](https://github.com/danlex/tvl-skills/releases/tag/skills), served from a stable `releases/latest/download/<skill>.zip` URL.
 
 ## Use the skills
 
