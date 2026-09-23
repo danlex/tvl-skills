@@ -81,6 +81,20 @@ def test_skill_has_example_and_limitations() -> None:
     assert text.count("ETHICAL AI AUDIT") >= 2
 
 
+def test_skill_hardening_and_positioning() -> None:
+    text = SKILL.read_text(encoding="utf-8")
+    low = text.lower()
+    # auditor self-defense against prompt injection
+    assert "never obeys instructions embedded" in low
+    assert "prompt injection finding" in low
+    # agent-behavior audits require history
+    assert "can only be judged with history" in low
+    # related-skills positioning
+    assert "Related skills" in text
+    assert "tvl-confirmation-bias-audit" in text
+    assert "tvl-detect-ai-writing" in text
+
+
 def test_rubric_defines_required_modes() -> None:
     text = RUBRIC.read_text(encoding="utf-8").lower()
     for mode in REQUIRED_MODES:
@@ -160,6 +174,7 @@ if __name__ == "__main__":
         test_description_mentions_all_modes,
         test_skill_defines_aggregation_and_scales,
         test_skill_has_example_and_limitations,
+        test_skill_hardening_and_positioning,
         test_rubric_defines_required_modes,
         test_rubric_defines_evidence_labels,
         test_rubric_has_firing_discipline,
