@@ -3,3 +3,6 @@ __pycache__/
 .DS_Store
 .idea/
 .vscode/
+
+# Skill zips are distributed as GitHub Release assets, not committed
+*.zip
