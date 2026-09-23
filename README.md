@@ -120,6 +120,20 @@ Install all skills into the current project:
 tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/danlex/tvl-skills.git "$tmp" && mkdir -p .claude/skills && cp -R "$tmp"/skills/* .claude/skills/
 ```
 
+### claude.ai
+
+claude.ai installs a skill from an uploaded `.zip`, no command line required. Skills require a plan with the Skills / code execution capability (Pro, Max, Team, or Enterprise).
+
+1. Download the skill zip:
+
+   [`tvl-ethical-ai-audit.zip`](https://github.com/danlex/tvl-skills/releases/latest/download/tvl-ethical-ai-audit.zip)
+
+2. In claude.ai, open **Settings → Capabilities → Skills**.
+3. Click **Upload skill** and select the downloaded zip.
+4. The skill activates automatically when you ask Claude to audit, verify, validate, or sanity-check a draft.
+
+Every published skill zip is attached to a [GitHub Release](https://github.com/danlex/tvl-skills/releases).
+
 ## Use the skills
 
 Invoke a skill explicitly when you want consistent behavior.
